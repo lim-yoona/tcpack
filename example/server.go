@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"msgpack"
+	"github.com/lim-yoona/msgpack"
 	"net"
 	"time"
 )
@@ -25,8 +25,6 @@ func main() {
 		mp := msgpack.NewMsgPack(8, tcpConn)
 		go func() {
 			for {
-				//buf := make([]byte, 50)
-				//num, err := tcpConn.Read(buf)
 				msg, err := mp.Unpack()
 				if err != nil {
 					fmt.Println("read msg failed:", err)
@@ -41,7 +39,6 @@ func main() {
 			for {
 				var data string
 				fmt.Scanln(&data)
-				//num, err := tcpConn.Write([]byte(message))
 				msg := msgpack.NewMessage(0, uint32(len([]byte(data))), []byte(data))
 				msgByte, err := mp.Pack(msg)
 				if err != nil {

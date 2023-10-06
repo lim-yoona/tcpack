@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"msgpack"
+	"github.com/lim-yoona/msgpack"
 	"net"
 )
 
@@ -32,7 +32,6 @@ func main() {
 		for {
 			var data string
 			fmt.Scanln(&data)
-			//num, err := tcpConn.Write([]byte(message))
 			msg := msgpack.NewMessage(0, uint32(len([]byte(data))), []byte(data))
 			msgByte, err := mp.Pack(msg)
 			if err != nil {
