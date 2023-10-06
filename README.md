@@ -1,13 +1,13 @@
 # msgpack
 English | [简体中文](README-CN.md)
 
-[msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack@v0.1.0) is an application protocol based on TCP to Pack and Unpack bytes stream in [go](https://go.dev/) (or 'golang' for search engine friendliness) program.  
+[msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack) is an application protocol based on TCP to Pack and Unpack bytes stream in [go](https://go.dev/) (or 'golang' for search engine friendliness) program.  
 
 ## What dose msgpack do?  
 
 As we all know, TCP is a transport layer protocol oriented to byte streams. Its data transmission has no clear boundaries, so the data read by the application layer may contain multiple requests and cannot be processed.   
 
-[msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack@v0.1.0) is to solve this problem by encapsulating the request data into a message, packaging it when sending and unpacking it when receiving.  
+[msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack) is to solve this problem by encapsulating the request data into a message, packaging it when sending and unpacking it when receiving.  
 
 ## What's in the box?  
 

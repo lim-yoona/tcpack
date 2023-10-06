@@ -1,13 +1,13 @@
 # msgpack
 [English](README.md) | 简体中文 
 
-[msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack@v0.1.0) 是一个基于 TCP 的应用层协议，用于在 [go](https://go.dev/) 程序中打包和解包字节流。  
+[msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack) 是一个基于 TCP 的应用层协议，用于在 [go](https://go.dev/) 程序中打包和解包字节流。  
 
 ## msgpack做了什么？  
 
 众所周知，TCP 是面向字节流的传输层协议，其数据传输没有明确的边界，因此应用层读取的数据可能包含多个请求而导致无法处理业务。  
 
-[msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack@v0.1.0) 就是为了解决这个问题，将请求数据封装成消息，发送时打包，接收时解包。  
+[msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack) 就是为了解决这个问题，将请求数据封装成消息，发送时打包，接收时解包。  
 
 ## msgpack中有什么?  
 
