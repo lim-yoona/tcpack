@@ -1,4 +1,4 @@
-package message
+package msgpack
 
 type Imessage interface {
 	GetDataLen() uint32

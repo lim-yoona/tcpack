@@ -6,14 +6,13 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"msgpack/message"
 	"net"
 )
 
 type IMsgPack interface {
 	GetHeadLen() uint32
-	Pack(message.Imessage) ([]byte, error)
-	Unpack() (message.Imessage, error)
+	Pack(Imessage) ([]byte, error)
+	Unpack() (Imessage, error)
 }
 
 type MsgPack struct {
@@ -31,7 +30,7 @@ func NewMsgPack(headlen uint32, conn net.Conn) *MsgPack {
 func (mp *MsgPack) GetHeadLen() uint32 {
 	return mp.HeadLen
 }
-func (mp *MsgPack) Pack(msg message.Imessage) ([]byte, error) {
+func (mp *MsgPack) Pack(msg Imessage) ([]byte, error) {
 	buffer := bytes.NewBuffer([]byte{})
 	if err := binary.Write(buffer, binary.LittleEndian, msg.GetDataLen()); err != nil {
 		return nil, err
@@ -44,7 +43,7 @@ func (mp *MsgPack) Pack(msg message.Imessage) ([]byte, error) {
 	}
 	return buffer.Bytes(), nil
 }
-func (mp *MsgPack) Unpack() (message.Imessage, error) {
+func (mp *MsgPack) Unpack() (Imessage, error) {
 	headDate := make([]byte, mp.GetHeadLen())
 	_, err := io.ReadFull(mp.conn, headDate)
 	if err != nil {
@@ -52,7 +51,7 @@ func (mp *MsgPack) Unpack() (message.Imessage, error) {
 		return nil, err
 	}
 	buffer := bytes.NewReader(headDate)
-	msg := message.NewMessage(0, 0, nil)
+	msg := NewMessage(0, 0, nil)
 	if err := binary.Read(buffer, binary.LittleEndian, &msg.DataLen); err != nil {
 		return nil, err
 	}
