@@ -1,11 +1,10 @@
 # msgpack
-English | [简体中文](README-CN.md)
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/lim-yoona/msgpack.svg)](https://pkg.go.dev/github.com/lim-yoona/msgpack)
 ![GitHub](https://img.shields.io/github/license/lim-yoona/msgpack)
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/lim-yoona/msgpack)
 
-
+English | [简体中文](README-CN.md)  
 
 
 [msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack) is an application protocol based on TCP to Pack and Unpack bytes stream in [go](https://go.dev/) (or 'golang' for search engine friendliness) program.  

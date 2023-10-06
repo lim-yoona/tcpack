@@ -1,10 +1,10 @@
 # msgpack
-[English](README.md) | 简体中文 
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/lim-yoona/msgpack.svg)](https://pkg.go.dev/github.com/lim-yoona/msgpack)
 ![GitHub](https://img.shields.io/github/license/lim-yoona/msgpack)
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/lim-yoona/msgpack)
 
+[English](README.md) | 简体中文  
 
 [msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack) 是一个基于 TCP 的应用层协议，用于在 [go](https://go.dev/) 程序中打包和解包字节流。  
 
