@@ -25,9 +25,7 @@ jobs:
       run:
         go get .
     - name: Build
-      run: 
-        go build -v client.go
-        go build -v server.go
+      run: go build -v ./..
 
     - name: Test
       run: go test -v -cover
