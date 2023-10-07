@@ -42,7 +42,13 @@ func TestMsgPack_Pack(t *testing.T) {
 	Convey("pack msg to send", t, func() {
 		So(msgSend, ShouldEqual, *msgRevOut)
 	})
+}
+
+func TestMsgPack_GetHeadLen(t *testing.T) {
+	address, _ := net.ResolveTCPAddr("tcp4", "127.0.0.1:8099")
+	tcpConn, _ := net.DialTCP("tcp4", nil, address)
+	mp := NewMsgPack(9, tcpConn)
 	Convey("get head length", t, func() {
-		So(mpClient.GetHeadLen(), ShouldEqual, 8)
+		So(mp.GetHeadLen(), ShouldEqual, 9)
 	})
 }
