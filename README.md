@@ -2,6 +2,7 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/lim-yoona/msgpack.svg)](https://pkg.go.dev/github.com/lim-yoona/msgpack)
 ![GitHub](https://img.shields.io/github/license/lim-yoona/msgpack)
+[![Go Report](https://img.shields.io/badge/go%20report-A+-brightgreen.svg?style=flat)](https://goreportcard.com/report/github.com/lim-yoona/msgpack)
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/lim-yoona/msgpack)
 
 English | [简体中文](README-CN.md)  
