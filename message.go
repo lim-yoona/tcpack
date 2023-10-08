@@ -17,6 +17,9 @@ type Message struct {
 
 // NewMessage returns a message typed *Message.
 func NewMessage(id, datalen uint32, data []byte) *Message {
+	if data == nil {
+		data = []uint8{}
+	}
 	return &Message{
 		Id:      id,
 		DataLen: datalen,
