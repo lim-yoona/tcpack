@@ -3,7 +3,6 @@ package msgpack
 import (
 	"bytes"
 	"encoding/binary"
-	"fmt"
 	"io"
 	"log"
 	"net"
@@ -27,7 +26,7 @@ type MsgPack struct {
 	conn    net.Conn
 }
 
-// NewMsgPack returns a packager `*MsgPack`
+// NewMsgPack returns a packager *MsgPack.
 func NewMsgPack(headlen uint32, conn net.Conn) *MsgPack {
 	return &MsgPack{
 		HeadLen: headlen,
@@ -71,7 +70,6 @@ func (mp *MsgPack) Unpack() (Imessage, error) {
 	if err := binary.Read(buffer, binary.LittleEndian, &msg.Id); err != nil {
 		return nil, err
 	}
-	fmt.Println("msg.GetDataLen():", msg.GetDataLen())
 	if msg.GetDataLen() > 0 {
 		msg.Data = make([]byte, msg.GetDataLen())
 		_, err := io.ReadFull(mp.conn, msg.Data)

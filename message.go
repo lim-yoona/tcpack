@@ -15,7 +15,7 @@ type Message struct {
 	Data    []byte
 }
 
-// NewMessage returns a message typed `*Message`.
+// NewMessage returns a message typed *Message.
 func NewMessage(id, datalen uint32, data []byte) *Message {
 	return &Message{
 		Id:      id,
@@ -24,17 +24,17 @@ func NewMessage(id, datalen uint32, data []byte) *Message {
 	}
 }
 
-// GetDataLen returns DataLen typed `uint32`.
+// GetDataLen returns DataLen typed uint32.
 func (msg *Message) GetDataLen() uint32 {
 	return msg.DataLen
 }
 
-// GetMsgId returns Id typed `uint32`.
+// GetMsgId returns Id typed uint32.
 func (msg *Message) GetMsgId() uint32 {
 	return msg.Id
 }
 
-// GetMsgData returns Data typed `[]byte`.
+// GetMsgData returns Data typed []byte.
 func (msg *Message) GetMsgData() []byte {
 	return msg.Data
 }
