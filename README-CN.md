@@ -62,7 +62,7 @@ type Person struct {
 	Age  int    `json:"age"`
 }
 
-// Create a packager
+// 创建一个打包器
 mp := msgpack.NewMsgPack(8, tcpConn)
 
 // data JSON Marshal
@@ -72,12 +72,12 @@ data := &Person{
 }
 dataJSON, _ := json.Marshal(data)
 
-// Pack a message
+// 打包一个消息
 msgSend := msgpack.NewMessage(0, uint32(len(dataJSON)), dataJSON)
 msgSendByte, _ := mpClient.Pack(msgSend)
 num, err := tcpConn.Write(msgSendByte)
 
-// Unpack a message
+// 解包一个消息
 msgRsv, err := mp.Unpack()
 
 // JSON UnMarshal
