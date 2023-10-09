@@ -54,6 +54,37 @@ func main() {
 }
 ```
 
+### 支持JSON
+
+```go
+type Person struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+}
+
+// Create a packager
+mp := msgpack.NewMsgPack(8, tcpConn)
+
+// data JSON Marshal
+data := &Person{
+	Name: "jack",
+	Age:  20,
+}
+dataJSON, _ := json.Marshal(data)
+
+// Pack a message
+msgSend := msgpack.NewMessage(0, uint32(len(dataJSON)), dataJSON)
+msgSendByte, _ := mpClient.Pack(msgSend)
+num, err := tcpConn.Write(msgSendByte)
+
+// Unpack a message
+msgRsv, err := mp.Unpack()
+
+// JSON UnMarshal
+var dataRsv Person
+json.Unmarshal(msgRsv.GetMsgData(), &dataRsv)
+```
+
 ## 示例
 
 这有一些 [示例](https://github.com/lim-yoona/msgpack/tree/main/example)。  
