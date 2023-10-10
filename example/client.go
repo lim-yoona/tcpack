@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/lim-yoona/msgpack"
+	"github.com/lim-yoona/tcpack"
 	"net"
 )
 
@@ -16,7 +16,7 @@ func main() {
 	if err != nil {
 		fmt.Println("create tcpconn failed", err)
 	}
-	mp := msgpack.NewMsgPack(8, tcpConn)
+	mp := tcpack.NewMsgPack(8, tcpConn)
 	go func() {
 		for {
 			msg, err := mp.Unpack()
@@ -32,7 +32,7 @@ func main() {
 		for {
 			var data string
 			fmt.Scanln(&data)
-			msg := msgpack.NewMessage(0, uint32(len([]byte(data))), []byte(data))
+			msg := tcpack.NewMessage(0, uint32(len([]byte(data))), []byte(data))
 			msgByte, err := mp.Pack(msg)
 			if err != nil {
 				fmt.Println("msg pack failed:", err)

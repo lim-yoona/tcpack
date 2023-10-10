@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/lim-yoona/msgpack"
+	"github.com/lim-yoona/tcpack"
 	"net"
 )
 
@@ -19,12 +19,12 @@ func main() {
 	//server
 	listener, _ := net.ListenTCP("tcp4", address2)
 
-	msgChan := make(chan *msgpack.Imessage, 10)
+	msgChan := make(chan *tcpack.Imessage, 10)
 
 	go func() {
 		for {
 			tcpConnServer, _ := listener.AcceptTCP()
-			mpServer := msgpack.NewMsgPack(8, tcpConnServer)
+			mpServer := tcpack.NewMsgPack(8, tcpConnServer)
 			for {
 				msgRev, _ := mpServer.Unpack()
 				msgChan <- &msgRev
@@ -38,7 +38,7 @@ func main() {
 		fmt.Println("create tcpConn failed")
 	}
 
-	mpClient := msgpack.NewMsgPack(8, tcpConnClient)
+	mpClient := tcpack.NewMsgPack(8, tcpConnClient)
 
 	jack := &Person{
 		Name: "jack",
@@ -46,7 +46,7 @@ func main() {
 	}
 	data, _ := json.Marshal(jack)
 	fmt.Println("send JSON:", string(data))
-	msgSend := msgpack.NewMessage(0, uint32(len(data)), data)
+	msgSend := tcpack.NewMessage(0, uint32(len(data)), data)
 	msgSendByte, _ := mpClient.Pack(msgSend)
 	_, _ = tcpConnClient.Write(msgSendByte)
 
