@@ -1,8 +1,11 @@
-module github.com/lim-yoona/msgpack
+module github.com/lim-yoona/tcpack
 
 go 1.20
 
-require github.com/smartystreets/goconvey v1.8.1
+require (
+	github.com/lim-yoona/msgpack v0.1.0
+	github.com/smartystreets/goconvey v1.8.1
+)
 
 require (
 	github.com/gopherjs/gopherjs v1.17.2 // indirect

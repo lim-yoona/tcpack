@@ -1,4 +1,4 @@
-package msgpack
+package tcpack
 
 // Imessage is an interface that definds a message,
 // which carries DataLen, MsgId and MsgData.

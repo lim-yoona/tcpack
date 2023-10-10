@@ -1,4 +1,4 @@
-package msgpack
+package tcpack
 
 import (
 	"bytes"

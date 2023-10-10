@@ -1,36 +1,36 @@
-# msgpack
+# tcpack
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/lim-yoona/msgpack.svg)](https://pkg.go.dev/github.com/lim-yoona/msgpack)
-![GitHub](https://img.shields.io/github/license/lim-yoona/msgpack)
-[![Go Report](https://img.shields.io/badge/go%20report-A+-brightgreen.svg?style=flat)](https://goreportcard.com/report/github.com/lim-yoona/msgpack)
-![GitHub release (with filter)](https://img.shields.io/github/v/release/lim-yoona/msgpack)
+[![Go Reference](https://pkg.go.dev/badge/github.com/lim-yoona/tcpack.svg)](https://pkg.go.dev/github.com/lim-yoona/tcpack)
+![GitHub](https://img.shields.io/github/license/lim-yoona/tcpack)
+[![Go Report](https://img.shields.io/badge/go%20report-A+-brightgreen.svg?style=flat)](https://goreportcard.com/report/github.com/lim-yoona/tcpack)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/lim-yoona/tcpack)
 
 [English](README.md) | 简体中文  
 
-[msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack) 是一个基于 TCP 的应用层协议，用于在 [go](https://go.dev/) 程序中打包和解包字节流。  
+[tcpack](https://pkg.go.dev/github.com/lim-yoona/tcpack) 是一个基于 TCP 的应用层协议，用于在 [go](https://go.dev/) 程序中打包和解包字节流。  
 
-## msgpack做了什么？  
+## tcpack做了什么？  
 
 众所周知，TCP 是面向字节流的传输层协议，其数据传输没有明确的边界，因此应用层读取的数据可能包含多个请求而导致无法处理业务。  
 
-[msgpack](https://pkg.go.dev/github.com/lim-yoona/msgpack) 就是为了解决这个问题，将请求数据封装成消息，发送时打包，接收时解包。  
+[tcpack](https://pkg.go.dev/github.com/lim-yoona/tcpack) 就是为了解决这个问题，将请求数据封装成消息，发送时打包，接收时解包。  
 
-## msgpack中有什么?  
+## tcpack中有什么?  
 
-msgpack 提供了一个支持 Pack 和 Unpack 的打包器。  
+`tcpack` 提供了一个支持 Pack 和 Unpack 的打包器。  
 
 ## 安装指南
 
-1. 为安装 msgpack 包, 首先你需要安装 [Go](https://go.dev/doc/install) , 然后你可以使用下面的命令将 `msgpack` 作为你Go程序的依赖。    
+1. 为安装 tcpack 包, 首先你需要安装 [Go](https://go.dev/doc/install) , 然后你可以使用下面的命令将 `tcpack` 作为你Go程序的依赖。    
 
 ```sh
-go get -u github.com/lim-yoona/msgpack
+go get -u github.com/lim-yoona/tcpack
 ```
 
-2. 将 msgpack 导入到代码中：  
+2. 将 tcpack 导入到代码中：  
 
 ```go
-import "github.com/lim-yoona/msgpack"
+import "github.com/lim-yoona/tcpack"
 ```
 
 ## 使用
@@ -38,14 +38,14 @@ import "github.com/lim-yoona/msgpack"
 ```go
 package main
 
-import "github.com/lim-yoona/msgpack"
+import "github.com/lim-yoona/tcpack"
 
 func main() {
     // 创建一个打包器
-    mp := msgpack.NewMsgPack(8, tcpConn)
+    mp := tcpack.NewMsgPack(8, tcpConn)
 
     // 打包一个消息
-    msg := msgpack.NewMessage(0, uint32(len([]byte(data))), []byte(data))
+    msg := tcpack.NewMessage(0, uint32(len([]byte(data))), []byte(data))
     msgByte, err := mp.Pack(msg)
     num, err := tcpConn.Write(msgByte)
 
@@ -63,7 +63,7 @@ type Person struct {
 }
 
 // 创建一个打包器
-mp := msgpack.NewMsgPack(8, tcpConn)
+mp := tcpack.NewMsgPack(8, tcpConn)
 
 // data JSON Marshal
 data := &Person{
@@ -73,7 +73,7 @@ data := &Person{
 dataJSON, _ := json.Marshal(data)
 
 // 打包一个消息
-msgSend := msgpack.NewMessage(0, uint32(len(dataJSON)), dataJSON)
+msgSend := tcpack.NewMessage(0, uint32(len(dataJSON)), dataJSON)
 msgSendByte, _ := mpClient.Pack(msgSend)
 num, err := tcpConn.Write(msgSendByte)
 
@@ -87,5 +87,5 @@ json.Unmarshal(msgRsv.GetMsgData(), &dataRsv)
 
 ## 示例
 
-这有一些 [示例](https://github.com/lim-yoona/msgpack/tree/main/example)。  
+这有一些 [示例](https://github.com/lim-yoona/tcpack/tree/main/example)。  
 
