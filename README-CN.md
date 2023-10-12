@@ -16,6 +16,8 @@
 
 [tcpack](https://pkg.go.dev/github.com/lim-yoona/tcpack) 就是为了解决这个问题，将请求数据封装成消息，发送时打包，接收时解包。  
 
+*注意： 在同一个连接上使用打包器并发读写消息是不安全的，不要去这样做，会带来不可预知的后果！*
+
 ## tcpack中有什么?  
 
 `tcpack` 提供了一个支持 Pack 和 Unpack 的打包器。  

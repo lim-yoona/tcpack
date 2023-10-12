@@ -17,6 +17,8 @@ As we all know, TCP is a transport layer protocol oriented to byte streams. Its 
 
 [tcpack](https://pkg.go.dev/github.com/lim-yoona/tcpack) is to solve this problem by encapsulating the request data into a message, packaging it when sending and unpacking it when receiving.  
 
+*notice: It is unsafe to use a packer to read and write messages concurrently on the same connection. Do not do this, as it will have unpredictable consequences!*
+
 ## What's in the box?  
 
 This library provides a packager which support Pack and Unpack.  
