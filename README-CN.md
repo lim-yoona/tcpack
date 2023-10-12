@@ -4,6 +4,7 @@
 ![GitHub](https://img.shields.io/github/license/lim-yoona/tcpack)
 [![Go Report](https://img.shields.io/badge/go%20report-A+-brightgreen.svg?style=flat)](https://goreportcard.com/report/github.com/lim-yoona/tcpack)
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/lim-yoona/tcpack)
+[![Mentioned in Awesome Go](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/avelino/awesome-go)
 
 [English](README.md) | 简体中文  
 
