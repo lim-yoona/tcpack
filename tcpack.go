@@ -40,18 +40,22 @@ func (mp *MsgPack) GetHeadLen() uint32 {
 }
 
 // Pack packs a message to bytes stream.
-func (mp *MsgPack) Pack(msg Imessage) ([]byte, error) {
+func (mp *MsgPack) Pack(msg Imessage) (uint32, error) {
 	buffer := bytes.NewBuffer([]byte{})
 	if err := binary.Write(buffer, binary.LittleEndian, msg.GetDataLen()); err != nil {
-		return nil, err
+		return 0, err
 	}
 	if err := binary.Write(buffer, binary.LittleEndian, msg.GetMsgId()); err != nil {
-		return nil, err
+		return 0, err
 	}
 	if err := binary.Write(buffer, binary.LittleEndian, msg.GetMsgData()); err != nil {
-		return nil, err
+		return 0, err
 	}
-	return buffer.Bytes(), nil
+	num, err := mp.conn.Write(buffer.Bytes())
+	if err != nil {
+		return 0, err
+	}
+	return uint32(num), nil
 }
 
 // Unpack unpacks a certain length bytes stream to a message.

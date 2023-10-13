@@ -48,12 +48,11 @@ func main() {
     // Create a packager
     mp := tcpack.NewMsgPack(8, tcpConn)
 
-    // Pack a message
+    // Pack and send a message
     msg := tcpack.NewMessage(0, uint32(len([]byte(data))), []byte(data))
-    msgByte, err := mp.Pack(msg)
-    num, err := tcpConn.Write(msgByte)
+	num, err := mp.Pack(msg)
 
-    // Unpack a message
+    // Unpack and receive a message
     msg, err := mp.Unpack()
 }
 ```
@@ -76,12 +75,11 @@ data := &Person{
 }
 dataJSON, _ := json.Marshal(data)
 
-// Pack a message
+// Pack and send a message
 msgSend := tcpack.NewMessage(0, uint32(len(dataJSON)), dataJSON)
-msgSendByte, _ := mpClient.Pack(msgSend)
-num, err := tcpConn.Write(msgSendByte)
+num, err := mp.Pack(msgSend)
 
-// Unpack a message
+// Unpack and receive a message
 msgRsv, err := mp.Unpack()
 
 // JSON UnMarshal

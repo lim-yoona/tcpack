@@ -37,8 +37,7 @@ func TestMsgPack_Pack(t *testing.T) {
 	mpClient := NewMsgPack(8, tcpConnClient)
 	data := "Hello,World"
 	msgSend := NewMessage(0, uint32(len([]byte(data))), []byte(data))
-	msgSendByte, _ := mpClient.Pack(msgSend)
-	_, _ = tcpConnClient.Write(msgSendByte)
+	_, _ = mpClient.Pack(msgSend)
 
 	msgRevOut := <-msgChan
 
@@ -51,14 +50,11 @@ func TestMsgPack_Pack(t *testing.T) {
 	data2 := "b"
 	data3 := "c"
 	msgSend1 := NewMessage(0, uint32(len([]byte(data1))), []byte(data1))
-	msgSendByte1, _ := mpClient.Pack(msgSend1)
+	_, _ = mpClient.Pack(msgSend1)
 	msgSend2 := NewMessage(0, uint32(len([]byte(data2))), []byte(data2))
-	msgSendByte2, _ := mpClient.Pack(msgSend2)
+	_, _ = mpClient.Pack(msgSend2)
 	msgSend3 := NewMessage(0, uint32(len([]byte(data3))), []byte(data3))
-	msgSendByte3, _ := mpClient.Pack(msgSend3)
-	_, _ = tcpConnClient.Write(msgSendByte1)
-	_, _ = tcpConnClient.Write(msgSendByte2)
-	_, _ = tcpConnClient.Write(msgSendByte3)
+	_, _ = mpClient.Pack(msgSend3)
 	msgRevOut1 := <-msgChan
 	msgRevOut2 := <-msgChan
 	msgRevOut3 := <-msgChan
@@ -75,8 +71,7 @@ func TestMsgPack_Pack(t *testing.T) {
 	// Send a message that exceeds the size of the socket buffer
 	data4 := make([]byte, 65600)
 	msgSend4 := NewMessage(0, uint32(len(data4)), data4)
-	msgSendByte4, _ := mpClient.Pack(msgSend4)
-	_, _ = tcpConnClient.Write(msgSendByte4)
+	_, _ = mpClient.Pack(msgSend4)
 	msgRevOut4 := <-msgChan
 	Convey("Send a message that exceeds the size of the socket buffer", t, func() {
 		So(msgSend4, ShouldEqual, *msgRevOut4)
@@ -113,8 +108,7 @@ func TestMsgPack_Unpack(t *testing.T) {
 	mpClient := NewMsgPack(8, tcpConnClient)
 	data := ""
 	msgSend := NewMessage(0, uint32(len([]byte(data))), []byte(data))
-	msgSendByte, _ := mpClient.Pack(msgSend)
-	_, _ = tcpConnClient.Write(msgSendByte)
+	_, _ = mpClient.Pack(msgSend)
 
 	msgRevOut := <-msgChan
 

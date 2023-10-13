@@ -47,8 +47,7 @@ func main() {
 	data, _ := json.Marshal(jack)
 	fmt.Println("send JSON:", string(data))
 	msgSend := tcpack.NewMessage(0, uint32(len(data)), data)
-	msgSendByte, _ := mpClient.Pack(msgSend)
-	_, _ = tcpConnClient.Write(msgSendByte)
+	_, _ = mpClient.Pack(msgSend)
 
 	msgRevOut := <-msgChan
 
