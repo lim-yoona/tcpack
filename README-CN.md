@@ -47,12 +47,11 @@ func main() {
     // 创建一个打包器
     mp := tcpack.NewMsgPack(8, tcpConn)
 
-    // 打包一个消息
+    // 打包一个消息并发送
     msg := tcpack.NewMessage(0, uint32(len([]byte(data))), []byte(data))
-    msgByte, err := mp.Pack(msg)
-    num, err := tcpConn.Write(msgByte)
+    num, err := mp.Pack(msg)
 
-    // 解包一个消息
+    // 解包一个消息并接收
     msg, err := mp.Unpack()
 }
 ```
@@ -75,12 +74,11 @@ data := &Person{
 }
 dataJSON, _ := json.Marshal(data)
 
-// 打包一个消息
+// 打包一个消息并发送
 msgSend := tcpack.NewMessage(0, uint32(len(dataJSON)), dataJSON)
-msgSendByte, _ := mpClient.Pack(msgSend)
-num, err := tcpConn.Write(msgSendByte)
+num, err := mp.Pack(msgSend)
 
-// 解包一个消息
+// 解包一个消息并接收
 msgRsv, err := mp.Unpack()
 
 // JSON UnMarshal

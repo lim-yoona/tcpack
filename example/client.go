@@ -33,11 +33,7 @@ func main() {
 			var data string
 			fmt.Scanln(&data)
 			msg := tcpack.NewMessage(0, uint32(len([]byte(data))), []byte(data))
-			msgByte, err := mp.Pack(msg)
-			if err != nil {
-				fmt.Println("msg pack failed:", err)
-			}
-			num, err := tcpConn.Write(msgByte)
+			num, err := mp.Pack(msg)
 			if err != nil {
 				fmt.Println("msg send failed:", err)
 			}
