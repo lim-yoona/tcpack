@@ -45,15 +45,15 @@ package main
 import "github.com/lim-yoona/tcpack"
 
 func main() {
-    // Create a packager
-    mp := tcpack.NewMsgPack(8, tcpConn)
+	// 创建一个打包器
+	mp := tcpack.NewMsgPack(8, tcpConn)
 
-    // Pack and send a message
-    msg := tcpack.NewMessage(0, uint32(len([]byte(data))), []byte(data))
+	// 打包一个消息并发送
+	msg := tcpack.NewMessage(0, uint32(len([]byte(data))), []byte(data))
 	num, err := mp.Pack(msg)
 
-    // Unpack and receive a message
-    msg, err := mp.Unpack()
+	// 解包一个消息并接收
+	msg, err := mp.Unpack()
 }
 ```
 
