@@ -19,6 +19,8 @@ As we all know, TCP is a transport layer protocol oriented to byte streams. Its 
 
 *notice: It is unsafe to use a packer to read and write messages concurrently on the same connection. Do not do this, as it will have unpredictable consequences!*
 
+If you want to use multiple packagers based on the same TCP connection to send and receive messages concurrently, please use [safetcpack](https://github.com/lim-yoona/tcpack/tree/main/safe/README.md).  
+
 ## What's in the box?  
 
 This library provides a packager which support Pack and Unpack.  
