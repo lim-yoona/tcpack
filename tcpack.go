@@ -14,7 +14,7 @@ type IMsgPack interface {
 	// Get the head length of the message package.
 	GetHeadLen() uint32
 	// Pack returns bytes stream packed from a message.
-	Pack(Imessage) ([]byte, error)
+	Pack(Imessage) (uint32, error)
 	// Unpack returns a message from bytes stream.
 	Unpack() (Imessage, error)
 }
@@ -22,24 +22,24 @@ type IMsgPack interface {
 // MsgPack implements the interface IMsgPack,
 // carrying HeadLen and conn for Pack() and Unpack().
 type MsgPack struct {
-	HeadLen uint32
+	headLen uint32
 	conn    net.Conn
 }
 
 // NewMsgPack returns a packager *MsgPack.
 func NewMsgPack(headlen uint32, conn net.Conn) *MsgPack {
 	return &MsgPack{
-		HeadLen: headlen,
+		headLen: headlen,
 		conn:    conn,
 	}
 }
 
 // GetHeadLen return HeadLen of the message.
 func (mp *MsgPack) GetHeadLen() uint32 {
-	return mp.HeadLen
+	return mp.headLen
 }
 
-// Pack packs a message to bytes stream.
+// Pack packs a message to bytes stream and sends it.
 func (mp *MsgPack) Pack(msg Imessage) (uint32, error) {
 	buffer := bytes.NewBuffer([]byte{})
 	if err := binary.Write(buffer, binary.LittleEndian, msg.GetDataLen()); err != nil {
