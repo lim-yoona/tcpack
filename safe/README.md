@@ -1,7 +1,7 @@
 # safetcpack
 English | [简体中文](README-CN.md)  
 
-safetcpack provides a thread-safe version of tcpack.
+[safetcpack](https://github.com/lim-yoona/tcpack/tree/main/safe) provides a thread-safe version of tcpack.
 
 ## Difference from tcpack
 Unlike tcpack, with safetcpack, you can construct multiple packers for a TCP connection and use them concurrently in multiple goroutines.  
